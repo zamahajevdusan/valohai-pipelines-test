@@ -1,0 +1,27 @@
+- step:
+    name: hello-world
+    image: python:3.9
+    command:
+    - echo "Say hello to my little friend!"
+    - echo "Say hello to my little friend!" > /valohai/outputs/hello_from_my_little_friend.txt
+
+- step:
+    name: hello-reader
+    image: python:3.9
+    command:
+    - echo "Reading from /valohai/inputs/data/hello_from_my_little_friend.txt"
+    - cat "/valohai/inputs/data/hello_from_my_little_friend.txt"
+    inputs:
+    - name: data
+
+- pipeline:
+    name: my-little-friend-pipeline
+    nodes:
+    - name: hello-world
+      type: execution
+      step: hello-world
+    - name: hello-reader
+      type: execution
+      step: hello-reader
+    edges:
+    - [ hello-world.output.*, hello-reader.input.data ]
