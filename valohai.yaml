@@ -23,4 +23,5 @@
     - name: hello-reader
       type: execution
       step: hello-reader
-    edges: []
+    edges:
+    - [ hello-world.output.*, hello-reader.input.data ]
