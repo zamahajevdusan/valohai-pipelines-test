@@ -20,4 +20,7 @@
     - name: hello-world
       type: execution
       step: hello-world
+    - name: hello-reader
+      type: execution
+      step: hello-reader
     edges: []
